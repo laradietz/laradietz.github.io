@@ -42,8 +42,7 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.1 }}
         >
-          <span>Portfolio · {new Date().getFullYear()}</span>
-          <span className="hidden sm:inline">{site.location}</span>
+          <span>Portafolio · {new Date().getFullYear()}</span>
           <LocalTime suffix=" ART" fallback="ART" />
         </motion.div>
 

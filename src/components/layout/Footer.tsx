@@ -9,7 +9,7 @@ export function Footer() {
       <div className="grid gap-8 border-t border-ink/20 pt-8 md:grid-cols-12 md:items-end">
         <div className="md:col-span-4">
           <p className="text-lg font-semibold tracking-tight">{site.name}</p>
-          <p className="text-sm text-ink/80">Frontend & Full Stack Developer · {site.location}</p>
+          <p className="text-sm text-ink/80">Frontend & Full Stack Developer</p>
         </div>
 
         <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium md:col-span-5">
@@ -29,7 +29,7 @@ export function Footer() {
 
         <div className="flex items-center justify-between gap-4 md:col-span-3 md:justify-end">
           <p className="font-mono text-xs text-ink/80">
-            © {new Date().getFullYear()} · <LocalTime suffix=" en Buenos Aires" fallback="Buenos Aires" />
+            © {new Date().getFullYear()} · <LocalTime suffix=" ART" fallback="ART" />
           </p>
           <a
             href="#inicio"

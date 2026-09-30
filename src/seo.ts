@@ -21,7 +21,6 @@ function personSchema() {
     url: `${site.url}/`,
     email: `mailto:${site.email}`,
     jobTitle: 'Frontend Developer',
-    address: { '@type': 'PostalAddress', addressLocality: 'José C. Paz', addressRegion: 'Buenos Aires', addressCountry: 'AR' },
     affiliation: { '@type': 'CollegeOrUniversity', name: 'Universidad Nacional de General Sarmiento' },
     knowsAbout: ['React', 'TypeScript', 'Frontend development', 'UI/UX', 'Accesibilidad web', 'Java', 'Spring Boot', 'Python', 'FastAPI', 'PostgreSQL'],
     sameAs,

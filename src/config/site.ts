@@ -4,14 +4,13 @@ import { siteUrl } from '../lib/siteUrl'
 export const site = {
   name: 'Lara Dietz',
   roles: ['Frontend Developer', 'Full Stack Developer'],
-  location: 'José C. Paz, Buenos Aires',
   timeZone: 'America/Argentina/Buenos_Aires',
   email: 'lara.dietz9296@gmail.com',
   url: siteUrl.url,
   locale: 'es_AR',
   title: 'Lara Dietz — Frontend & Full Stack Developer',
   description:
-    'Portfolio de Lara Dietz, Frontend y Full Stack Developer en Buenos Aires. Interfaces con React y TypeScript, animación, accesibilidad y productos completos de punta a punta.',
+    'Portafolio de Lara Dietz, Frontend y Full Stack Developer. Interfaces con React y TypeScript, animación, accesibilidad y productos completos de punta a punta.',
 } as const
 
 export interface SocialLink {

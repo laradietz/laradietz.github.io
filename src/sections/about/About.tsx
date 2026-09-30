@@ -1,5 +1,4 @@
 import { ArrowUpRight } from 'lucide-react'
-import { site } from '../../config/site'
 import { education, languages, manifesto, nowBuilding, principles } from '../../content/profile'
 import { getProject, projects } from '../../content/projects'
 import { techs } from '../../content/stack'
@@ -91,8 +90,7 @@ export function About() {
           </ol>
         </div>
 
-        <div className="mt-[clamp(4rem,9vw,8rem)] grid gap-10 border-t border-ink/15 pt-8 sm:grid-cols-2 lg:grid-cols-4">
-          <Fact title="Base">{site.location}</Fact>
+        <div className="mt-[clamp(4rem,9vw,8rem)] grid gap-10 border-t border-ink/15 pt-8 sm:grid-cols-2 lg:grid-cols-3">
           <Fact title="Formación">
             <ul className="space-y-2">
               {education.map((item) => (
