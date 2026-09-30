@@ -1,0 +1,206 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/bricolage-grotesque/wght.css';
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+@import '@fontsource/instrument-serif/latin-400-italic.css';
+
+@theme {
+  --font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', monospace;
+
+  --color-ink: #0c0c0a;
+  --color-ink-2: #161614;
+  --color-ink-3: #22221f;
+  --color-paper: #eeeae2;
+  --color-paper-2: #e2ddd2;
+  --color-fog: #b8b3a8;
+  --color-mute: #8c877d;
+  --color-mute-paper: #5c5850;
+  --color-accent: #ff5b2e;
+  --color-accent-soft: #ff8a68;
+  --color-inspect: #4f7cff;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+
+  --breakpoint-3xl: 112rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --gutter: clamp(1rem, 4vw, 3.5rem);
+    --nav-h: 4.5rem;
+  }
+
+  html {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    scroll-padding-top: var(--nav-h);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .gutter {
+    padding-inline: var(--gutter);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 760;
+    letter-spacing: -0.045em;
+    line-height: 0.86;
+  }
+
+  .serif-accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .hairline {
+    border-color: color-mix(in oklab, currentColor 14%, transparent);
+  }
+
+  /* Text that is visually hidden but still read by assistive tech. */
+  .sr-only-focusable:not(:focus-visible) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* Custom cursor: only where it is actually rendered (fine pointer, motion allowed). */
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [role='button'] {
+  cursor: none;
+}
+
+/* ── Inspector mode ──────────────────────────────────────────────────────────
+   Toggled from the navbar. Every [data-component] shows its outline and name,
+   so the page documents its own component architecture. Pure CSS: zero runtime cost. */
+html[data-inspect] [data-component] {
+  outline: 1px dashed color-mix(in oklab, var(--color-inspect) 75%, transparent);
+  outline-offset: -1px;
+}
+
+html[data-inspect] [data-component]::before {
+  content: '<' attr(data-component) ' />';
+  position: absolute;
+  z-index: 70;
+  top: 0;
+  left: 0;
+  padding: 2px 6px;
+  font: 500 10px/1.4 var(--font-mono);
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--color-inspect);
+  border-bottom-right-radius: 4px;
+  pointer-events: none;
+}
+
+html[data-inspect] [data-component][data-meta]::after {
+  content: attr(data-meta);
+  position: absolute;
+  z-index: 70;
+  top: 0;
+  right: 0;
+  padding: 2px 6px;
+  font: 400 10px/1.4 var(--font-mono);
+  color: var(--color-inspect);
+  background: color-mix(in oklab, var(--color-ink) 88%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-inspect) 50%, transparent);
+  border-top: 0;
+  border-right: 0;
+  border-bottom-left-radius: 4px;
+  pointer-events: none;
+}
+
+@keyframes marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, #6fdc8c 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* On the orange closing sections the accent focus ring would disappear. */
+#contacto :focus-visible,
+#site-footer :focus-visible {
+  outline-color: var(--color-ink);
+}
+
+/* The hero starts under the fixed navbar: move its inspector labels below it. */
+html[data-inspect] #inicio::before,
+html[data-inspect] #inicio::after {
+  top: var(--nav-h);
+}

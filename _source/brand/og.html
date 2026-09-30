@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>OG</title>
+<style>
+  @font-face { font-family: 'Bricolage'; src: url('/node_modules/@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2') format('woff2'); font-weight: 200 800; }
+  @font-face { font-family: 'Mono'; src: url('/node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2') format('woff2'); font-weight: 100 800; }
+  @font-face { font-family: 'Serif'; font-style: italic; src: url('/node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2') format('woff2'); }
+  html, body { margin: 0; background: #0c0c0a; }
+  .card { width: 800px; height: 420px; box-sizing: border-box; padding: 40px 44px; background: #0c0c0a; color: #eeeae2; font-family: 'Bricolage'; position: relative; overflow: hidden; }
+  .meta { display: flex; justify-content: space-between; font: 500 11px 'Mono'; letter-spacing: .14em; text-transform: uppercase; color: #8c877d; border-bottom: 1px solid #ffffff1a; padding-bottom: 12px; }
+  h1 { margin: 26px 0 0; font-weight: 780; font-size: 128px; line-height: .84; letter-spacing: -.045em; }
+  h1 span { display: block; padding-left: 1.6em; }
+  .tag { position: absolute; top: 96px; right: 44px; font: italic 32px 'Serif'; color: #ff5b2e; transform: rotate(-4deg); }
+  .foot { position: absolute; left: 44px; right: 44px; bottom: 30px; display: flex; justify-content: space-between; align-items: center; font: 500 12px 'Mono'; letter-spacing: .12em; text-transform: uppercase; color: #b8b3a8; }
+  .dot { width: 44px; height: 44px; border-radius: 50%; background: #ff5b2e; }
+  .icon { width: 180px; height: 180px; background: #ff5b2e; display: grid; place-items: center; font: 700 76px 'Mono'; color: #0c0c0a; margin-top: 20px; }
+</style>
+</head>
+<body>
+  <div class="card" id="og">
+    <div class="meta"><span>Portfolio · 2026</span><span>Buenos Aires</span></div>
+    <h1>Lara<span>Dietz</span></h1>
+    <div class="tag">(interfaces con criterio)</div>
+    <div class="foot"><span>Frontend & Full Stack Developer — React · TypeScript</span><span class="dot"></span></div>
+  </div>
+  <div class="icon" id="icon">ld</div>
+</body>
+</html>
