@@ -1,4 +1,3 @@
-import { pending } from '../lib/pending'
 import type { ArchivedProject, Project } from './types'
 
 /**
@@ -14,7 +13,7 @@ export const projects: Project[] = [
     tagline: 'La web de una cafetería de especialidad, editable desde el celular.',
     summary:
       'Sitio oficial de Portal Café (San Miguel, Buenos Aires): una página animada y prerenderizada para SEO, y un panel donde el local edita la carta, los precios, los horarios y el contacto sin tocar código.',
-    status: 'Trabajo para un cliente · código privado',
+    status: 'En producción · trabajo para un cliente, código privado',
     stack: ['react', 'typescript', 'vite', 'tailwind', 'motion', 'supabase', 'postgresql', 'node', 'vercel', 'html', 'css'],
     problem:
       'Una cafetería necesitaba una web que transmitiera la experiencia del local y que su propio equipo pudiera mantener al día (carta, precios, promos, horarios) desde el celular, sin depender de un desarrollador para cada cambio.',
@@ -99,7 +98,7 @@ export const projects: Project[] = [
       { value: 'H', label: 'corrección del QR: tolera hasta 30 %' },
     ],
     // The repository is private (client work): only the live site is linked.
-    links: { demo: pending('URL pública de Portal Café'), repo: null },
+    links: { demo: 'https://portal-cafe.vercel.app/', repo: null },
     media: {
       kind: 'screens',
       cover: 'portal-cafe/hero',

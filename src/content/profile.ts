@@ -36,7 +36,7 @@ export const principles: Principle[] = [
 
 export const nowBuilding = {
   label: 'Ahora',
-  body: 'Llevando Portal Café a producción y cursando la Licenciatura en Sistemas.',
+  body: 'Portal Café ya está en producción. Sigo cursando la Licenciatura en Sistemas.',
 }
 
 export const education = [

@@ -29,7 +29,7 @@ export function CaseHeader({ project }: { project: Project }) {
           <div className="col-span-2 flex flex-wrap gap-2">
             {project.links.demo && (
               <SmartLink href={project.links.demo} className="flex items-center gap-1.5 rounded-full bg-paper px-4 py-2 font-semibold text-ink">
-                Ver demo <ArrowUpRight size={14} aria-hidden="true" />
+                Ver sitio <ArrowUpRight size={14} aria-hidden="true" />
               </SmartLink>
             )}
             {project.links.repo && (

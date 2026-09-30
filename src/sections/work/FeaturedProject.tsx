@@ -61,7 +61,7 @@ export function FeaturedProject({ project }: { project: Project }) {
             </Magnetic>
             {project.links.demo && (
               <SmartLink href={project.links.demo} className="flex items-center rounded-full border border-white/15 px-5 py-3 text-sm">
-                Demo
+                Ver sitio
               </SmartLink>
             )}
             {project.links.repo && (
@@ -76,14 +76,14 @@ export function FeaturedProject({ project }: { project: Project }) {
       <div ref={mediaRef} className="relative lg:col-span-7">
         <a href={projectPath(project.slug)} onClick={open} data-cursor="Ver caso" className="block" aria-label={`Abrir el caso de ${project.name}`}>
           <motion.div style={drift(slow)}>
-            <BrowserFrame url="portalcafe · /">
+            <BrowserFrame url="portal-cafe.vercel.app">
               <Picture image={desktop[0]!.image} alt={desktop[0]!.caption} sizes="(min-width: 1024px) 55vw, 92vw" />
             </BrowserFrame>
           </motion.div>
 
           <div className="relative mt-10 grid grid-cols-12 items-start gap-4 sm:mt-16">
             <motion.div style={drift(fast)} className="col-span-7 sm:col-span-8">
-              <BrowserFrame url="portalcafe · /#carta">
+              <BrowserFrame url="portal-cafe.vercel.app/#carta">
                 <Picture image={desktop[1]!.image} alt={desktop[1]!.caption} sizes="(min-width: 1024px) 38vw, 60vw" />
               </BrowserFrame>
             </motion.div>
@@ -101,7 +101,7 @@ export function FeaturedProject({ project }: { project: Project }) {
               </PhoneFrame>
             </motion.div>
             <motion.div style={drift(slow)} className="col-span-8 sm:col-span-9">
-              <BrowserFrame url="portalcafe · /admin">
+              <BrowserFrame url="portal-cafe.vercel.app/admin">
                 <Picture image="portal-cafe/panel-qr" alt="Panel de administración: generador del código QR oficial" sizes="(min-width: 1024px) 42vw, 64vw" />
               </BrowserFrame>
             </motion.div>

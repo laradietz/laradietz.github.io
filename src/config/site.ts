@@ -1,4 +1,4 @@
-import { pending, type MaybePending } from '../lib/pending'
+import type { MaybePending } from '../lib/pending'
 import { siteUrl } from '../lib/siteUrl'
 
 export const site = {
@@ -22,11 +22,7 @@ export interface SocialLink {
 
 export const socials = {
   github: { label: 'GitHub', handle: '@laradietz', href: 'https://github.com/laradietz' },
-  linkedin: {
-    label: 'LinkedIn',
-    handle: pending('usuario de LinkedIn'),
-    href: pending('URL del perfil de LinkedIn'),
-  },
+  linkedin: { label: 'LinkedIn', handle: 'laradietz', href: 'https://www.linkedin.com/in/laradietz' },
 } satisfies Record<string, SocialLink>
 
 export const sections = [

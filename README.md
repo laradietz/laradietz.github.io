@@ -65,13 +65,8 @@ scripts/
 - **Capturas:** copiá el original a `_source/<proyecto>/`, agregalo al `MANIFEST` de `scripts/optimize-images.mjs` y corré `npm run images`. Para que un proyecto muestre capturas en lugar del diagrama, cambiá su `media` a `{ kind: 'screens', … }`.
 - **Redes y email:** `src/config/site.ts`.
 
-## Pendiente (completar antes de publicar)
+## Mejoras pendientes
 
-`npm run build` lista todo lo que sigue marcado con `pending()`:
-
-- **LinkedIn:** usuario y URL (`src/config/site.ts`).
-- **Portal Café:** URL pública (`src/content/projects.ts`). El repositorio es privado, así que no se enlaza.
-- **Dominio del portfolio:** `PUBLIC_SITE_URL` (ver `.env.example`). Se usa en canonical, Open Graph y sitemap. En un deploy de producción en Vercel, el build falla si no está definida.
 - **Capturas en alta resolución:** las de Portal Café salieron de un navegador a 800 px de ancho. Recapturarlas a 1440 px con 2× de densidad mejoraría la nitidez en pantallas retina.
 - **Capturas de LifeHub, Marketing Attribution, Turnos Médicos y Ferretería:** por ahora esos proyectos muestran un diagrama hecho en código, no una captura.
 
