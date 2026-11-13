@@ -23,6 +23,7 @@ const labels: Record<Motif, string> = {
   attribution: 'modelo Time Decay',
   layers: 'capas de la API',
   ledger: 'módulos del sistema',
+  vault: 'flujo de un comprobante',
 }
 
 function Modules() {
@@ -150,9 +151,62 @@ function Ledger() {
   )
 }
 
+function Vault() {
+  const steps = ['Foto', 'Recorte', 'PDF', 'Bucket privado']
+  return (
+    <div className="absolute inset-0 flex items-center justify-center gap-[5cqw] bg-[#10151b] px-[6cqw]">
+      <div className="relative h-[40cqw] w-[30cqw] shrink-0">
+        {[2, 1, 0].map((layer) => (
+          <div
+            key={layer}
+            className="absolute inset-0 rounded-[1.4cqw] border border-white/10 bg-[#f2ede3] p-[2.4cqw] font-mono text-[#10151b] shadow-2xl transition-transform duration-700 ease-out-expo group-hover:-translate-y-[1cqw]"
+            style={{ transform: `translate(${layer * 2.2}cqw, ${layer * -2.2}cqw)`, opacity: 1 - layer * 0.25 }}
+          >
+            {layer === 0 && (
+              <>
+                <p className="text-[max(9px,1.8cqw)] font-bold tracking-[0.15em]">FACTURA A</p>
+                <p className="mt-[0.6cqw] text-[max(8px,1.3cqw)] opacity-60">0001-00001234</p>
+                <div className="mt-[2.5cqw] flex flex-col gap-[1.2cqw]" aria-hidden="true">
+                  {[80, 64, 72, 50].map((width) => (
+                    <i key={width} className="block h-[0.7cqw] rounded-full bg-[#10151b]/15" style={{ width: `${width}%` }} />
+                  ))}
+                </div>
+                <p className="absolute right-[2.4cqw] bottom-[2.4cqw] rounded-full bg-[#10151b] px-[1.4cqw] py-[0.4cqw] text-[max(8px,1.3cqw)] text-[#e6c86e]">PDF</p>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="flex flex-col gap-[3cqw]">
+        <ol className="flex flex-col gap-[1.2cqw] font-mono text-[max(9px,1.6cqw)] text-white/70">
+          {steps.map((step, index) => (
+            <li key={step} className="flex items-center gap-[1.2cqw]">
+              <span className="grid size-[3.2cqw] place-items-center rounded-full border border-[#e6c86e]/60 text-[#e6c86e]">{index + 1}</span>
+              {step}
+            </li>
+          ))}
+        </ol>
+        <div className="rounded-[1.4cqw] border border-white/10 bg-white/[0.04] p-[2cqw]">
+          <p className="font-mono text-[max(8px,1.3cqw)] tracking-widest text-white/50 uppercase">Autorizar dispositivo</p>
+          <p className="mt-[1.2cqw] flex gap-[0.8cqw]" aria-hidden="true">
+            {Array.from({ length: 6 }, (_, index) => (
+              <span key={index} className="grid h-[4.6cqw] w-[3.6cqw] place-items-center rounded-[0.8cqw] bg-white/8 font-mono text-[max(10px,2.2cqw)] text-white">
+                •
+              </span>
+            ))}
+          </p>
+          <p className="mt-[1.2cqw] font-mono text-[max(8px,1.3cqw)] text-[#6fdc8c]">RLS · URL firmada 60 s</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const illustrations: Record<Motif, () => React.JSX.Element> = {
   modules: Modules,
   attribution: Attribution,
   layers: Layers,
   ledger: Ledger,
+  vault: Vault,
 }

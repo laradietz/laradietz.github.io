@@ -8,7 +8,7 @@ export interface Shot {
 }
 
 /** Coded illustrations for projects that don't have captures yet (see ProjectMotif). */
-export type Motif = 'modules' | 'attribution' | 'layers' | 'ledger'
+export type Motif = 'modules' | 'attribution' | 'layers' | 'ledger' | 'vault'
 
 export type ProjectMedia =
   | { kind: 'screens'; cover: ImageKey; desktop: Shot[]; mobile: Shot[] }

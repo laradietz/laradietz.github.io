@@ -12,8 +12,8 @@ export const projects: Project[] = [
     kind: 'Sitio web + panel de administración',
     tagline: 'La web de una cafetería de especialidad, editable desde el celular.',
     summary:
-      'Sitio oficial de Portal Café (San Miguel, Buenos Aires): una página animada y prerenderizada para SEO, y un panel donde el local edita la carta, los precios, los horarios y el contacto sin tocar código.',
-    status: 'En producción · trabajo para un cliente, código privado',
+      'Sitio web y panel de administración para Portal Café, una cafetería de especialidad de San Miguel: una página animada y prerenderizada para SEO, y un panel donde el local edita la carta, los precios, los horarios y el contacto sin tocar código.',
+    status: 'Proyecto propio · publicado en Vercel',
     stack: ['react', 'typescript', 'vite', 'tailwind', 'motion', 'supabase', 'postgresql', 'node', 'vercel', 'html', 'css'],
     problem:
       'Una cafetería necesitaba una web que transmitiera la experiencia del local y que su propio equipo pudiera mantener al día (carta, precios, promos, horarios) desde el celular, sin depender de un desarrollador para cada cambio.',
@@ -97,7 +97,6 @@ export const projects: Project[] = [
       { value: '0', label: 'renders de React por frame de scroll' },
       { value: 'H', label: 'corrección del QR: tolera hasta 30 %' },
     ],
-    // The repository is private (client work): only the live site is linked.
     links: { demo: 'https://portal-cafe.vercel.app/', repo: null },
     media: {
       kind: 'screens',
@@ -117,6 +116,61 @@ export const projects: Project[] = [
         { image: 'portal-cafe/mobile-momentos', caption: 'Tu día, mobile' },
       ],
     },
+  },
+  {
+    slug: 'ferreteria-lleyton',
+    name: 'Ferretería Lleyton 2',
+    year: 2026,
+    kind: 'Aplicación web privada (PWA)',
+    tagline: 'Boletas y facturas de proveedores, digitalizadas desde el celular y protegidas en la base.',
+    summary:
+      'App web instalable para registrar proveedores y digitalizar, organizar y consultar boletas, facturas y tickets de tarjeta. Tiene un único administrador, que solo entra desde los dispositivos que él mismo autoriza.',
+    status: 'Desplegada en Vercel · uso privado',
+    stack: ['react', 'typescript', 'vite', 'tailwind', 'react-router', 'tanstack-query', 'react-hook-form', 'zod', 'pwa', 'supabase', 'postgresql', 'sql', 'vercel', 'vitest', 'pgtap', 'git', 'github'],
+    problem:
+      'Las boletas y facturas de los proveedores de una ferretería se guardan en papel: se pierden, cuesta encontrarlas y no hay forma de consultarlas por proveedor, fecha o importe. Además, son documentos sensibles que no pueden quedar expuestos.',
+    solution: [
+      'Una PWA mobile-first: sacás una foto de la boleta con el celular, la recortás, girás y mejorás, y la app la convierte a PDF en el mismo navegador. El original nunca se modifica y las fotos no pasan por ningún servidor para procesarse.',
+      'Toda la seguridad vive en PostgreSQL: RLS en todas las tablas, funciones SECURITY DEFINER para las operaciones privilegiadas y un bucket privado con URLs firmadas de 60 segundos. El frontend solo muestra pantallas.',
+    ],
+    features: [
+      { title: 'Carga desde la cámara', body: 'Foto con vista previa, recorte, giro, mejora, varias páginas reordenables y conversión a PDF con pdf-lib. Detecta duplicados y advierte sin bloquear.' },
+      { title: 'Búsqueda y visor', body: 'Búsqueda por proveedor, CUIT, número, tipo, fecha, importe y descripción, con filtros combinables y visor de PDF e imágenes dentro de la app.' },
+      { title: 'Dispositivos autorizados', body: 'Un dispositivo nuevo se aprueba con un código de 6 dígitos que se tipea desde uno ya autorizado. Con la contraseña sola no alcanza.' },
+      { title: 'Tickets de tarjeta', body: 'Sección de crédito y débito con cuotas, marca y lote, y resúmenes por día y por mes en hora de Argentina.' },
+      { title: 'Inicio y actividad', body: 'Indicadores, gráfico por mes, últimos documentos y un registro de actividad inmutable y sin datos sensibles.' },
+      { title: 'Respaldos', body: 'Respaldo, verificación y restauración probados de punta a punta, también para los tickets de tarjeta.' },
+    ],
+    architecture: {
+      summary: 'Un frontend que solo muestra pantallas y una base de datos que decide cada permiso.',
+      layers: [
+        { name: 'PWA', detail: 'React 19 · TanStack Query', items: ['React Hook Form + Zod', 'pdf-lib y pdf.js en el navegador', 'Sin documentos en caché'] },
+        { name: 'Auth', detail: 'Supabase Auth', items: ['Administrador único, sin registro público', 'Lista blanca de dispositivos'] },
+        { name: 'Base de datos', detail: 'PostgreSQL · RLS', items: ['Funciones SECURITY DEFINER', 'Búsqueda con índices trigram', '10 migraciones versionadas'] },
+        { name: 'Storage', detail: 'Bucket privado', items: ['URLs firmadas de 60 s', 'Rutas generadas por el sistema', 'Validación por contenido del archivo'] },
+        { name: 'Calidad', detail: 'CI · pre-commit', items: ['Vitest, pgTAP e integración', 'Auditoría de secretos', 'oxlint y TypeScript estricto'] },
+      ],
+    },
+    decisions: [
+      { title: 'La seguridad vive en la base', body: 'Cualquier regla escrita solo en el frontend se salta llamando a la API. Está probado: un dispositivo no autorizado con un token válido ve 0 filas.' },
+      { title: 'Un dispositivo, una sesión aprobada', body: 'Robar la contraseña no alcanza: además hace falta controlar un dispositivo ya autorizado. Revocar uno cierra su sesión.' },
+      { title: 'Los originales no se tocan', body: 'Cada archivo se guarda tal cual. Las ediciones y el PDF generado son registros aparte, y Storage no permite sobrescribir.' },
+      { title: 'Guardado con compensación', body: 'Storage y PostgreSQL no comparten transacción: si algo falla después de subir los archivos, se deshace todo.' },
+    ],
+    outcome: [
+      'Aplicación completa, construida en 10 etapas probadas una por una antes de seguir.',
+      'Más de 480 pruebas automáticas: unitarias y de componentes, de base de datos con pgTAP y de integración contra la API y Storage reales.',
+      'Documentación separada para quien usa el sistema, quien lo despliega y quien lo mantiene: uso, despliegue, seguridad, respaldos y decisiones técnicas.',
+    ],
+    facts: [
+      { value: '480+', label: 'pruebas automáticas' },
+      { value: '10', label: 'migraciones versionadas con RLS' },
+      { value: '60 s', label: 'de vida para cada URL de archivo' },
+      { value: '0', label: 'filas visibles para un dispositivo no autorizado' },
+    ],
+    // Private app and repository: the case study is the only public view of the project.
+    links: { demo: null, repo: null },
+    media: { kind: 'motif', motif: 'vault' },
   },
   {
     slug: 'lifehub',
@@ -179,7 +233,7 @@ export const projects: Project[] = [
     summary:
       'Registra el recorrido de cada cliente entre canales de marketing y calcula cuánto crédito le corresponde a cada touchpoint en una conversión, bajo cinco modelos de atribución documentados.',
     status: 'Completo',
-    stack: ['react', 'typescript', 'vite', 'tailwind', 'recharts', 'react-router', 'axios', 'java', 'spring-boot', 'spring-security', 'jpa', 'jwt', 'postgresql', 'flyway', 'docker', 'junit'],
+    stack: ['react', 'typescript', 'vite', 'tailwind', 'recharts', 'react-router', 'axios', 'react-hook-form', 'zod', 'java', 'spring-boot', 'spring-security', 'jpa', 'jwt', 'postgresql', 'flyway', 'docker', 'junit'],
     problem:
       'Un cliente rara vez convierte por un solo anuncio. La mayoría de las herramientas asigna el 100 % al último clic y esconde el cálculo, subestimando los canales que iniciaron el recorrido.',
     solution: [

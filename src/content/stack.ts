@@ -32,6 +32,10 @@ export const techs = [
   { id: 'react-router', name: 'React Router', symbol: 'Rr', category: 'frontend' },
   { id: 'axios', name: 'Axios', symbol: 'Ax', category: 'frontend' },
   { id: 'recharts', name: 'Recharts', symbol: 'Rc', category: 'frontend' },
+  { id: 'tanstack-query', name: 'TanStack Query', symbol: 'Tq', category: 'frontend' },
+  { id: 'react-hook-form', name: 'React Hook Form', symbol: 'Rh', category: 'frontend' },
+  { id: 'zod', name: 'Zod', symbol: 'Zd', category: 'frontend' },
+  { id: 'pwa', name: 'PWA', symbol: 'Pw', category: 'frontend' },
 
   { id: 'java', name: 'Java', symbol: 'Ja', category: 'backend' },
   { id: 'spring-boot', name: 'Spring Boot', symbol: 'Sb', category: 'backend' },
@@ -59,6 +63,7 @@ export const techs = [
   { id: 'vitest', name: 'Vitest', symbol: 'Vt', category: 'tooling' },
   { id: 'pytest', name: 'pytest', symbol: 'Pt', category: 'tooling' },
   { id: 'junit', name: 'JUnit', symbol: 'Ju', category: 'tooling' },
+  { id: 'pgtap', name: 'pgTAP', symbol: 'Ta', category: 'tooling' },
 
   { id: 'tkinter', name: 'Tkinter', symbol: 'Tk', category: 'desktop' },
   { id: 'matplotlib', name: 'Matplotlib', symbol: 'Mp', category: 'desktop' },
