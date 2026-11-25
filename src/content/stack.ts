@@ -53,9 +53,13 @@ export const techs = [
   { id: 'supabase', name: 'Supabase', symbol: 'Su', category: 'data' },
   { id: 'flyway', name: 'Flyway', symbol: 'Fw', category: 'data' },
   { id: 'alembic', name: 'Alembic', symbol: 'Al', category: 'data' },
+  { id: 'pandas', name: 'pandas', symbol: 'Pa', category: 'data' },
+  { id: 'power-bi', name: 'Power BI', symbol: 'Pb', category: 'data' },
+  { id: 'dax', name: 'DAX', symbol: 'Dx', category: 'data' },
 
   { id: 'git', name: 'Git', symbol: 'Gi', category: 'tooling' },
   { id: 'github', name: 'GitHub', symbol: 'Gh', category: 'tooling' },
+  { id: 'github-actions', name: 'GitHub Actions', symbol: 'Ga', category: 'tooling' },
   { id: 'docker', name: 'Docker', symbol: 'Dk', category: 'tooling' },
   { id: 'maven', name: 'Maven', symbol: 'Mv', category: 'tooling' },
   { id: 'vercel', name: 'Vercel', symbol: 'Vc', category: 'tooling' },

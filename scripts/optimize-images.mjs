@@ -24,6 +24,7 @@ const MANIFEST = [
     name,
     widths: [240, 469],
   })),
+  { project: 'reportes-automaticos', name: 'tablero', widths: [480, 788, 1100] },
 ]
 
 function probe(file) {

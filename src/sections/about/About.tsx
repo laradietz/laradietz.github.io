@@ -13,7 +13,7 @@ const lifehub = getProject('lifehub')!
 const lifehubTests = lifehub.facts.filter((fact) => fact.label.startsWith('tests')).reduce((sum, fact) => sum + Number(fact.value), 0)
 
 const stats = [
-  { value: projects.length, label: 'productos completos, de la interfaz a la base de datos' },
+  { value: projects.length, label: 'proyectos completos, con su base de datos detrás' },
   { value: techs.length, label: 'tecnologías usadas en proyectos reales' },
   { value: lifehubTests, label: 'tests automatizados solo en LifeHub' },
   { value: 3, label: 'lenguajes de trabajo: TypeScript, Java y Python' },

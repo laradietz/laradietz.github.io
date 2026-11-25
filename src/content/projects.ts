@@ -173,6 +173,63 @@ export const projects: Project[] = [
     media: { kind: 'motif', motif: 'vault' },
   },
   {
+    slug: 'reportes-automaticos',
+    name: 'Automatización de reportes',
+    year: 2026,
+    kind: 'Pipeline ETL · datos',
+    tagline: 'De los datos crudos al reporte, sin tocar nada a mano.',
+    summary:
+      'Pipeline en Python y SQL que obtiene datos de archivos y de una API REST, los limpia y valida, los carga en un data warehouse (SQLite o PostgreSQL) y genera reportes en Excel, HTML y un tablero de Power BI, todos los días y sin intervención.',
+    status: 'Completo · CI en GitHub Actions',
+    stack: ['python', 'pandas', 'sql', 'sqlite', 'postgresql', 'sqlalchemy', 'openpyxl', 'matplotlib', 'power-bi', 'dax', 'pytest', 'github-actions', 'git', 'github'],
+    problem:
+      'Armar cada semana el reporte de ventas a mano significa exportar CSV de distintos sistemas, corregir errores en Excel y copiar tablas y gráficos. Es lento, propenso a errores y no deja rastro de qué datos se descartaron ni por qué.',
+    solution: [
+      'Un proceso ETL por etapas: extrae de CSV y de una API REST con reintentos, transforma con reglas de validación (cada fila descartada queda guardada con su motivo) y carga en un esquema en estrella, en una sola transacción y de forma idempotente.',
+      'Las métricas de los reportes viven en consultas SQL versionadas, con CTEs y funciones de ventana. El mismo código corre sobre SQLite y PostgreSQL, y todo se lanza con un comando que una tarea programada o GitHub Actions puede ejecutar cada día.',
+    ],
+    features: [
+      { title: 'Calidad de datos con auditoría', body: 'Siete reglas de validación sobre las ventas, deduplicación y normalización. Cada rechazo se guarda con su motivo, y si la tasa supera un umbral el proceso termina con un código de salida propio.' },
+      { title: 'Carga incremental', body: 'Procesa solo las ventas posteriores a la última fecha cargada, con un día de solape para datos tardíos. Un test comprueba que el resultado es idéntico a recargar todo.' },
+      { title: 'Fuente REST', body: 'Trae el dólar oficial desde una API pública, con timeout, reintentos con espera creciente, validación de lo que devuelve y copia local por si la API cae. Con eso los reportes calculan ventas en USD.' },
+      { title: 'Reportes automáticos', body: 'Un Excel de seis hojas con gráfico nativo, un HTML con gráficos y el modelo en estrella exportado con nombres fijos para refrescar Power BI con un clic.' },
+      { title: 'Tablero de Power BI', body: 'Relaciones entre hechos y dimensiones, tabla de fechas y medidas DAX: acumulado del año, variación contra el mes anterior, ticket promedio y descuento efectivo.' },
+    ],
+    architecture: {
+      summary: 'Etapas separadas, un warehouse que audita cada corrida y una capa de datos que no depende del motor.',
+      layers: [
+        { name: 'Extracción', detail: 'Python · pandas', items: ['CSV leídos como texto', 'API REST con reintentos y copia local'] },
+        { name: 'Transformación', detail: 'Reglas de calidad', items: ['Cada rechazo con su motivo', 'Alerta si hay demasiados'] },
+        { name: 'Warehouse', detail: 'SQLite · PostgreSQL', items: ['Esquema en estrella con PK, FK y CHECK', 'Upsert con ON CONFLICT', 'Tablas de auditoría por corrida'] },
+        { name: 'Reportes', detail: 'SQL · openpyxl · matplotlib', items: ['Una consulta versionada por reporte', 'Excel, HTML y modelo para Power BI'] },
+        { name: 'Calidad', detail: 'pytest · GitHub Actions', items: ['46 tests contra ambos motores', 'CI con un PostgreSQL real'] },
+      ],
+    },
+    decisions: [
+      { title: 'La lógica de negocio vive en SQL', body: 'Las métricas están en consultas versionadas, no escondidas en pandas: se pueden revisar y reutilizar desde cualquier herramienta de BI.' },
+      { title: 'Rechazar con motivo, no corregir en silencio', body: 'Ninguna fila se pierde sin rastro: un test comprueba que todo lo leído queda cargado o rechazado. La única imputación (descuento vacío igual a cero) está documentada.' },
+      { title: 'Dos motores, un solo código', body: 'Un test compara cada consulta en SQLite y PostgreSQL. Encontró que PostgreSQL 16.2 ignoraba un filtro sobre RANK() combinado con otra función de ventana, y por eso el Top 15 usa LIMIT.' },
+      { title: 'Incremental sin sorpresas', body: 'Lo que ya se rechazó en una corrida anterior no se reprocesa ni vuelve a contar para la alerta de calidad.' },
+    ],
+    outcome: [
+      'Proceso completo de punta a punta, con datos sintéticos reproducibles: 12.466 filas leídas y 370 rechazadas con su motivo (3,0 %).',
+      '46 pruebas automáticas que corren contra SQLite y PostgreSQL 16, y un workflow de GitHub Actions que ejecuta el pipeline sobre ambos motores.',
+    ],
+    facts: [
+      { value: '46', label: 'tests contra SQLite y PostgreSQL 16' },
+      { value: '2', label: 'motores SQL con el mismo código' },
+      { value: '7', label: 'reglas de validación sobre las ventas' },
+      { value: '0', label: 'filas perdidas en silencio: cada rechazo guarda su motivo' },
+    ],
+    links: { demo: null, repo: 'https://github.com/laradietz/reportes-automaticos' },
+    media: {
+      kind: 'screens',
+      cover: 'reportes-automaticos/tablero',
+      desktop: [{ image: 'reportes-automaticos/tablero', caption: 'Tablero de Power BI sobre el modelo en estrella que genera el pipeline (datos sintéticos).' }],
+      mobile: [],
+    },
+  },
+  {
     slug: 'lifehub',
     name: 'LifeHub',
     alias: 'Life Under Control',

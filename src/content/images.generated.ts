@@ -139,6 +139,24 @@ export const images = {
         469
       ]
     ]
+  },
+  "reportes-automaticos/tablero": {
+    "width": 1103,
+    "height": 747,
+    "srcset": [
+      [
+        "/work/reportes-automaticos/tablero-480.webp",
+        480
+      ],
+      [
+        "/work/reportes-automaticos/tablero-788.webp",
+        788
+      ],
+      [
+        "/work/reportes-automaticos/tablero-1100.webp",
+        1100
+      ]
+    ]
   }
 } as const satisfies Record<string, ImageAsset>
 
